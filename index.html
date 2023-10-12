@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>AngularJS Master-Detail Form Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainController" class="container mt-5">
+
+    <!-- Master Form -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Master Form</h2>
+            <form ng-submit="addItem()">
+                <div class="form-group">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" class="form-control" ng-model="newItem.name" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription">Item Description:</label>
+                    <input type="text" class="form-control" ng-model="newItem.description" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Item</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- List of Items -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Items</h2>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in items">
+                    <a  ng-click="editItem(item)">{{ item.name }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Edit Form (hidden by default) -->
+    <div class="card mb-4" ng-show="editingItem !== null">
+        <div class="card-body">
+            <h2 class="card-title">Edit Item</h2>
+            <form ng-submit="saveItem()">
+                <div class="form-group">
+                    <label for="itemName">Item Name:</label>
+                    <input type="text" class="form-control" ng-model="selectedDetailItem.name" required>
+                </div>
+                <div class="form-group">
+                    <label for="itemDescription">Item Description:</label>
+                    <input type="text" class="form-control" ng-model="selectedDetailItem.description" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
