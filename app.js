@@ -19,6 +19,7 @@ app.controller('MainController', function($scope) {
     $scope.editItem = function(item) {
         $scope.selectedDetailItem = angular.copy(item);
         $scope.editingItem = $scope.items.indexOf(item);
+        $('#itemModal').modal('show');
     };
 
     $scope.saveItem = function() {
@@ -26,8 +27,18 @@ app.controller('MainController', function($scope) {
             if ($scope.editingItem !== null) {
                 // Edit existing item
                 $scope.items[$scope.editingItem] = angular.copy($scope.selectedDetailItem);
-                $scope.editingItem = null; // Reset editingItem after saving changes
+            } else {
+                // Add new item
+                $scope.items.push(angular.copy($scope.selectedDetailItem));
             }
+            $('#itemModal').modal('hide');
+        }
+    };
+
+    $scope.deleteItem = function() {
+        if ($scope.editingItem !== null) {
+            $scope.items.splice($scope.editingItem, 1);
+            $('#itemModal').modal('hide');
         }
     };
 });
