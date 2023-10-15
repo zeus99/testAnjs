@@ -17,6 +17,8 @@
                 <tr>
                     <th>Name</th>
                     <th>Price</th>
+                    <th>Date</th>
+                    <th>Available</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -24,6 +26,8 @@
                 <tr ng-repeat="product in products">
                     <td>{{ product.name }}</td>
                     <td>{{ product.price }}</td>
+                    <td>{{ product.date }}</td>
+                    <td><input type="checkbox" ng-model="product.available" disabled></td>
                     <td><button class="btn btn-primary" ng-click="editProduct(product)">Edit</button></td>
                 </tr>
             </tbody>
@@ -47,6 +51,14 @@
                         <div class="form-group">
                             <label for="productPrice">Price:</label>
                             <input type="number" class="form-control" id="productPrice" ng-model="editedProduct.price">
+                        </div>
+                        <div class="form-group">
+                            <label for="productDate">Date:</label>
+                            <input type="date" class="form-control" id="productDate" ng-model="editedProduct.date">
+                        </div>
+                        <div class="form-group">
+                            <label for="productAvailable">Available:</label>
+                            <input type="checkbox" class="form-control" id="productAvailable" ng-model="editedProduct.available">
                         </div>
                         <button type="submit" class="btn btn-primary">Save</button>
                     </form>
